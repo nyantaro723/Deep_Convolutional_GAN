@@ -1,4 +1,4 @@
-name: DCGAN Tests
+name: Test
 
 on:
   push:

@@ -2,7 +2,7 @@
 
 敵対的生成ネットワーク（GAN）を使用した画像生成の実装です。生成器（Generator）と識別器（Discriminator）を競わせることで、リアルな画像を生成することを目指します。
 
-[![test](https://github.com/nyantaro723/Deep_Convolutional_GAN/workflows/test.yml/badge.svg)](https://github.com/nyantaro723/Deep_Convolutional_GAN/actions/workflows/test.yml)
+[![Test](https://github.com/nyantaro723/Deep_Convolutional_GAN/workflows/test.yml/badge.svg)](https://github.com/nyantaro723/Deep_Convolutional_GAN/actions/workflows/test.yml)
 [![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
 
 ## 概要
