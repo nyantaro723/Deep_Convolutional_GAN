@@ -2,7 +2,7 @@
 
 敵対的生成ネットワーク（GAN）を使用した画像生成の実装です。生成器（Generator）と識別器（Discriminator）を競わせることで、リアルな画像を生成することを目指します。
 
-## 📋 プロジェクト概要
+## プロジェクト概要
 
 ### GAN (Generative Adversarial Network) とは
 
@@ -21,7 +21,7 @@ GANは二つのニューラルネットワークが競い合うことで学習�
 - バッチ正規化（Batch Normalization）でトレーニングを安定化
 - LeakyReLUを使用した活性化関数
 
-## 🔬 数学的基礎
+## 数学的基礎
 
 ### GAN の損失関数
 
@@ -46,7 +46,7 @@ $$\nabla_G \mathbb{E}_z[\log(1 - D(G(z)))]$$
 または実務では以下を使用（より安定）：
 $$\nabla_G \mathbb{E}_z[-\log D(G(z))]$$
 
-## 🏗️ アーキテクチャ
+## アーキテクチャ
 
 ### 生成器 (Generator)
 
@@ -84,7 +84,7 @@ $$\nabla_G \mathbb{E}_z[-\log D(G(z))]$$
 出力: スカラー値 (本物である確率)
 ```
 
-## 🚀 主な手法と工夫
+## 主な手法と工夫
 
 | 手法 | 説明 |
 |------|------|
@@ -94,7 +94,7 @@ $$\nabla_G \mathbb{E}_z[-\log D(G(z))]$$
 | **Label Smoothing** | 過学習を防止するため、ターゲットラベルを平滑化 |
 | **Spectral Normalization** | 識別器の重みを正規化（オプション） |
 
-## 📊 訓練曲線の例
+## 訓練曲線の例
 
 ```
 Discriminator Loss        Generator Loss
@@ -110,19 +110,17 @@ Discriminator Loss        Generator Loss
 - 訓練中盤: 生成器が上達し、損失が振動
 - 訓練後期: 両方が均衡を取り、リアルな画像生成
 
-## 💾 ファイル構成
+## ファイル構成
 
 ```
 Deep_Convolutional_GAN/
-├── README.md                 # このファイル
 ├── dcgan.py                  # DCGAN実装（モデル定義）
 ├── train.py                  # 訓練スクリプト
-├── requirements.txt          # 必要なライブラリ
 ├── checkpoints/              # 学習済みモデル保存用
 └── outputs/                  # 生成画像保存用
 ```
 
-## ⚙️ インストール
+## インストール
 
 ```bash
 # リポジトリのクローン
@@ -141,7 +139,7 @@ pip install -r requirements.txt
 - matplotlib
 - Pillow
 
-## 🎯 使用方法
+## 使用方法
 
 ### モデルの訓練
 
@@ -186,7 +184,7 @@ with torch.no_grad():
     save_image(fake_images, 'generated_images.png', normalize=True)
 ```
 
-## 📈 訓練結果の可視化
+## 訓練結果の可視化
 
 ```python
 import matplotlib.pyplot as plt
@@ -205,7 +203,7 @@ plt.savefig('training_loss.png')
 plt.show()
 ```
 
-## 🔍 実装のポイント
+## 実装のポイント
 
 ### 1. 重み初期化
 
@@ -241,38 +239,14 @@ g_loss = loss_fn(D(fake_images), real_labels)
 - グラデーション消失を防ぐため、生成器の損失計算時にDetach()を活用
 - 定期的にチェックポイントを保存
 
-## 📚 参考資料
+## 参考資料
 
 - **元論文**: "Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks" (Radford et al., 2015)
 - **参考スライド**: [アドバンストビジョン第4回](https://ryuichiueda.github.io/slides_marp/advanced_vision/lesson4.html)
 - **PyTorch公式チュートリアル**: https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
 
-## 🎓 習得できる内容
+## ライセンス
 
-このプロジェクトを通じて以下を学べます：
+- このプロジェクトはMITライセンスの下で公開されています。
 
-- ✅ 敵対的生成ネットワークの理論と実装
-- ✅ 深層学習における不安定性の対処法
-- ✅ PyTorchを使用した複雑なニューラルネットワークの構築
-- ✅ 画像データセットの処理と正規化
-- ✅ モデルの訓練、保存、復元
-- ✅ 生成モデルの評価方法
-
-## ⚠️ 訓練時の注意点
-
-1. **モード崩壊 (Mode Collapse)**: 生成器が限定的な種類の画像しか生成できなくなる現象
-   - 対策: 学習率の調整、新しい損失関数（Wasserstein距離）の使用
-
-2. **勾配消失**: 生成器の勾配が消失する問題
-   - 対策: LeakyReLU、Spectral Normalizationの使用
-
-3. **振動**: 損失が収束せず振動し続ける
-   - 対策: バッチサイズの調整、オプティマイザーパラメータの修正
-
-## 📝 ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。
-
-## 🤝 貢献
-
-改善提案やバグ報告は、Issuesやプルリクエストでお願いします。
+© 2025 Ryusei Matsuki
