@@ -254,6 +254,8 @@ g_loss = loss_fn(D(fake_images), real_labels)
 - **参考スライド**: [アドバンストビジョン第4回](https://ryuichiueda.github.io/slides_marp/advanced_vision/lesson4.html)
 - **PyTorch公式チュートリアル**: https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
 
+---
+
 ## ライセンス
 
 - このソフトウェアパッケージは，3条項BSDライセンスの下，再領布および使用が許可されます．
