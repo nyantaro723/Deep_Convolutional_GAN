@@ -223,6 +223,10 @@ g_loss = loss_fn(D(fake_images), real_labels)
 - グラデーション消失を防ぐため、生成器の損失計算時にDetach()を活用
 - 定期的にチェックポイントを保存
 
+## 使用データセット
+
+- CIFAR-10 Dataset
+
 ## 参考資料
 
 - **元論文**: "Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks" (Radford et al., 2015)
@@ -231,6 +235,6 @@ g_loss = loss_fn(D(fake_images), real_labels)
 
 ## ライセンス
 
-- このプロジェクトはMITライセンスの下で公開されています。
+- このソフトウェアパッケージは，3条項BSDライセンスの下，再領布および使用が許可されます．
 
 © 2025 Ryusei Matsuki
