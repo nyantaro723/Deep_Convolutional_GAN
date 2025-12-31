@@ -95,7 +95,7 @@ $$\nabla_G \mathbb{E}_z[-\log D(G(z))]$$
 | 手法 | 説明 |
 |------|------|
 | **Batch Normalization** | 各層の入力を正規化し、トレーニングを安定化 |
-| **LeakyReLU** | 識別器で使用。負の領域でもグラデーントが流れる |
+| **LeakyReLU** | 識別器で使用。負の領域でも勾配が流れる |
 | **Transposed Convolution** | 生成器で使用。テンソルを拡大 |
 | **Label Smoothing** | 過学習を防止するため、ターゲットラベルを平滑化 |
 | **Spectral Normalization** | 識別器の重みを正規化（オプション） |
