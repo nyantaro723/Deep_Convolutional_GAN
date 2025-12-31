@@ -258,6 +258,7 @@ g_loss = loss_fn(D(fake_images), real_labels)
 
 ## ライセンス
 
-- このソフトウェアパッケージは，3条項BSDライセンスの下，再領布および使用が許可されます．
+- このプロジェクトはMITライセンスの下で公開されています。  
+- 詳細は [LICENSE](LICENSE) ファイルを参照してください。
 
 © 2025 Ryusei Matsuki
