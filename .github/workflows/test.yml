@@ -2,16 +2,16 @@ name: DCGAN Tests
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, ubuntu-22.04, macos-latest]
         python-version: ['3.9', '3.10', '3.11', '3.12']
 
     steps:
@@ -35,26 +35,26 @@ jobs:
 
     - name: Test model instantiation
       run: |
-        python -c "
-import torch
-from dcgan import Generator, Discriminator, weights_init
+        python - <<'PY'
+        import torch
+        from dcgan import Generator, Discriminator, weights_init
 
-device = 'cpu'
-gen = Generator().to(device)
-dis = Discriminator().to(device)
+        device = 'cpu'
+        gen = Generator().to(device)
+        dis = Discriminator().to(device)
 
-gen.apply(weights_init)
-dis.apply(weights_init)
+        gen.apply(weights_init)
+        dis.apply(weights_init)
 
-print('✓ Generator created successfully')
-print('✓ Discriminator created successfully')
-print('✓ Weight initialization completed')
+        print('✓ Generator created successfully')
+        print('✓ Discriminator created successfully')
+        print('✓ Weight initialization completed')
 
-# Test forward pass
-z = torch.randn(4, 100, device=device)
-fake_images = gen(z)
-output = dis(fake_images)
+        # Test forward pass
+        z = torch.randn(4, 100, device=device)
+        fake_images = gen(z)
+        output = dis(fake_images)
 
-print(f'✓ Generator output shape: {fake_images.shape}')
-print(f'✓ Discriminator output shape: {output.shape}')
-        "
+        print(f'✓ Generator output shape: {fake_images.shape}')
+        print(f'✓ Discriminator output shape: {output.shape}')
+        PY
