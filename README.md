@@ -4,6 +4,7 @@
 
 [![Test](https://github.com/nyantaro723/Deep_Convolutional_GAN/workflows/Test/badge.svg)](https://github.com/nyantaro723/Deep_Convolutional_GAN/actions/workflows/test.yml)
 [![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ## 概要
 
@@ -244,7 +245,7 @@ g_loss = loss_fn(D(fake_images), real_labels)
 
 - Ubuntu 22.04, 24.04
 - macOS 14 (Sonoma)
-- Python 3.8, 3.9, 3.10, 3.11, 3.12
+- Python 3.9, 3.10, 3.11, 3.12
 
 ---
 
