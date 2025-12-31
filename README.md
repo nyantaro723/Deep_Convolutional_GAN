@@ -24,6 +24,8 @@ GANは二つのニューラルネットワークが競い合うことで学習�
 - バッチ正規化（Batch Normalization）でトレーニングを安定化
 - LeakyReLUを使用した活性化関数
 
+---
+
 ## 数学的基礎
 
 ### GAN の損失関数
@@ -107,6 +109,8 @@ Deep_Convolutional_GAN/
 └── outputs/                  # 生成画像保存用
 ```
 
+---
+
 ## インストール
 
 ```bash
@@ -125,6 +129,8 @@ pip install -r requirements.txt
 - numpy
 - matplotlib
 - Pillow
+
+---
 
 ## 使用方法
 
@@ -190,6 +196,8 @@ plt.savefig('training_loss.png')
 plt.show()
 ```
 
+---
+
 ## 実装のポイント
 
 ### 1. 重み初期化
@@ -226,9 +234,19 @@ g_loss = loss_fn(D(fake_images), real_labels)
 - グラデーション消失を防ぐため、生成器の損失計算時にDetach()を活用
 - 定期的にチェックポイントを保存
 
+---
+
 ## 使用データセット
 
 - CIFAR-10 Dataset
+
+## 動作確認済み環境
+
+- Ubuntu 22.04, 24.04
+- macOS 14 (Sonoma)
+- Python 3.8, 3.9, 3.10, 3.11, 3.12
+
+---
 
 ## 参考資料
 
