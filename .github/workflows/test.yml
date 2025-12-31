@@ -1,0 +1,60 @@
+name: DCGAN Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Verify DCGAN modules
+      run: |
+        python -c "import torch; print(f'✓ PyTorch {torch.__version__} loaded')"
+        python -c "import torchvision; print(f'✓ torchvision {torchvision.__version__} loaded')"
+        python -c "from dcgan import Generator, Discriminator; print('✓ DCGAN modules loaded successfully')"
+
+    - name: Test model instantiation
+      run: |
+        python -c "
+import torch
+from dcgan import Generator, Discriminator, weights_init
+
+device = 'cpu'
+gen = Generator().to(device)
+dis = Discriminator().to(device)
+
+gen.apply(weights_init)
+dis.apply(weights_init)
+
+print('✓ Generator created successfully')
+print('✓ Discriminator created successfully')
+print('✓ Weight initialization completed')
+
+# Test forward pass
+z = torch.randn(4, 100, device=device)
+fake_images = gen(z)
+output = dis(fake_images)
+
+print(f'✓ Generator output shape: {fake_images.shape}')
+print(f'✓ Discriminator output shape: {output.shape}')
+        "
