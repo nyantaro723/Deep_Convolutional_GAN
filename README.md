@@ -116,7 +116,7 @@ Deep_Convolutional_GAN/
 
 ```bash
 # リポジトリのクローン
-git clone https://github.com/YourUsername/Deep_Convolutional_GAN.git
+git clone https://github.com/nyantaro723/Deep_Convolutional_GAN.git
 cd Deep_Convolutional_GAN
 
 # 依存ライブラリのインストール
