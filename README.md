@@ -70,7 +70,7 @@ $$\mathcal{L}_G = -\mathbb{E}_{z \sim p_z} [\log D_\phi(G_\theta(z))]$$
 1. $z \sim p_z(z)$ をサンプリングし $\hat{x} = G_\theta(z)$ を生成
 2. 実画像 $x$ と $\hat{x}$ を識別器に通し $D_\phi(x), D_\phi(\hat{x})$ を得る
 3. $\mathcal{L}\_D$ を計算し $\phi \leftarrow \phi - \eta\_D \nabla\_\phi \mathcal{L}\_D$
-4. $z$ を再サンプルし $\mathcal{L}\_G$ を計算、$\theta \leftarrow \theta - \eta\_G \nabla\_\theta \mathcal{L}\_G$
+4. $z$ を再サンプルし $\mathcal{L}_{G}$ を計算、$\theta \leftarrow \theta - \eta_{G} \nabla_{\theta} \mathcal{L}_{G}$
 
 **推論時 (画像生成):**
 $$z \sim \mathcal{N}(0, I), \quad \hat{x} = G_\theta(z)$$
