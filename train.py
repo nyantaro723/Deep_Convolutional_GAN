@@ -238,14 +238,16 @@ def train_dcgan(args):
     
     # Plot and save loss curves
     plt.figure(figsize=(10, 5))
-    plt.plot(g_losses, label='Generator Loss', linewidth=2)
-    plt.plot(d_losses, label='Discriminator Loss', linewidth=2)
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.title('DCGAN Training Loss')
-    plt.legend()
+    epochs_range = range(1, len(g_losses) + 1)
+    plt.plot(epochs_range, g_losses, label='Generator Loss', linewidth=2, marker='o')
+    plt.plot(epochs_range, d_losses, label='Discriminator Loss', linewidth=2, marker='s')
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Loss', fontsize=12)
+    plt.title('DCGAN Training Loss', fontsize=14, fontweight='bold')
+    plt.legend(fontsize=10)
     plt.grid(True, alpha=0.3)
-    plt.savefig('outputs/training_loss.png', dpi=100, bbox_inches='tight')
+    plt.tight_layout()
+    plt.savefig('outputs/training_loss.png', dpi=150, bbox_inches='tight')
     print("Saved training loss plot to outputs/training_loss.png")
     
     print("Training completed!")

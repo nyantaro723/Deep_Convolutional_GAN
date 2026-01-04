@@ -139,6 +139,10 @@ Deep_Convolutional_GAN/
 git clone https://github.com/nyantaro723/Deep_Convolutional_GAN.git
 cd Deep_Convolutional_GAN
 
+# 仮想環境 (推奨)
+python3 -m venv .venv
+source .venv/bin/activate
+
 # 依存ライブラリのインストール
 pip install -r requirements.txt
 ```
@@ -196,6 +200,19 @@ with torch.no_grad():
     z = torch.randn(16, 100, 1, 1, device=device)
     fake_images = gen(z)
     save_image(fake_images, 'generated_images.png', normalize=True)
+```
+
+### 生成画像サンプルと埋め込み例
+
+```bash
+python generate.py \
+  --checkpoint checkpoints/generator_final.pth \
+  --num_images 16 \
+  --output outputs/generated_samples.png
+```
+
+```markdown
+![Generated samples](outputs/generated_samples.png)
 ```
 
 ## 訓練結果の可視化
