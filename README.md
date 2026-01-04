@@ -198,33 +198,6 @@ with torch.no_grad():
     save_image(fake_images, 'generated_images.png', normalize=True)
 ```
 
-### 生成画像サンプル (例)
-
-訓練後に生成した画像をREADMEに貼り付けると、成果が一目で分かります。
-
-```
-outputs/
-├── generated_epoch_10.png
-├── generated_epoch_50.png
-└── generated_epoch_100.png
-```
-
-作成した画像を以下のように埋め込めます（GitHub上で表示）：
-
-```markdown
-![Generated samples at epoch 50](outputs/generated_epoch_50.png)
-![Generated samples at epoch 100](outputs/generated_epoch_100.png)
-```
-
-生成スクリプト例（任意のチェックポイントで実行）:
-
-```bash
-python generate.py \
-  --checkpoint checkpoints/generator_epoch_100.pth \
-  --num_images 16 \
-  --output outputs/generated_epoch_100.png
-```
-
 ## 訓練結果の可視化
 
 ```python
