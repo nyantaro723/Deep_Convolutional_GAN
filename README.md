@@ -215,6 +215,16 @@ python generate.py \
 ![Generated samples](outputs/generated_samples.png)
 ```
 
+### 訓練損失グラフ (例)
+
+`train.py` 実行後に保存される損失曲線を埋め込むには、同じくリポジトリ内の相対パスで指定します。
+
+```markdown
+![Training loss](outputs/training_loss.png)
+```
+
+`outputs/training_loss.png` がコミットされていれば、GitHub上でも表示されます。
+
 ## 訓練結果の可視化
 
 ```python
