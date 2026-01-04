@@ -50,16 +50,20 @@ $$\nabla_G \mathbb{E}_z[\log(1 - D(G(z)))]$$
 または実務では以下を使用（より安定）：
 $$\nabla_G \mathbb{E}_z[-\log D(G(z))]$$
 
+---
+
 ### 画像生成アルゴリズム（数式概要）
 
 - **入力分布**: ノイズ $z \sim \mathcal{N}(0, I)$、実画像 $x \sim p_{\text{data}}(x)$
-- **生成器の写像**: $\hat{x} = G_\theta(z)$（$\theta$ は生成器パラメータ）
-- **識別器の出力**: $D_\phi(x) = \sigma(f_\phi(x)) \in (0, 1)$（$\phi$ は識別器パラメータ, $\sigma$ はシグモイド）
+- **生成器の写像**: $\hat{x} = G_\theta(z)$（ $\theta$ は生成器パラメータ）
+- **識別器の出力**: $D_\phi(x) = \sigma(f_\phi(x)) \in (0, 1)$（ $\phi$ は識別器パラメータ, $\sigma$ はシグモイド）
 
 **識別器の損失 (二値交差エントロピー):**
+
 $$\mathcal{L}_D = -\mathbb{E}_{x \sim p_{\text{data}}} [\log D_\phi(x)] - \mathbb{E}_{z \sim p_z} [\log (1 - D_\phi(G_\theta(z)))]$$
 
 **生成器の損失 (非飽和型推奨):**
+
 $$\mathcal{L}_G = -\mathbb{E}_{z \sim p_z} [\log D_\phi(G_\theta(z))]$$
 
 **更新ステップ (1バッチ当たりの流れ):**
@@ -71,6 +75,8 @@ $$\mathcal{L}_G = -\mathbb{E}_{z \sim p_z} [\log D_\phi(G_\theta(z))]$$
 **推論時 (画像生成):**
 $$z \sim \mathcal{N}(0, I), \quad \hat{x} = G_\theta(z)$$
 識別器は不要で、生成器のみで画像をサンプリングします。
+
+---
 
 ## アーキテクチャ
 
