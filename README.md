@@ -213,9 +213,13 @@ python generate.py \
 
 ![Generated samples](outputs/generated_samples.png)
 
+- **生成画像サンプル**: 学習済みGeneratorでノイズから生成した16枚の例です。色・質感・形状の多様性とリアリティをざっと目視確認するための参考画像です。
+
 ### 訓練損失グラフ (例)
 
 ![Training loss](outputs/training_loss.png)
+
+- **損失推移**: このグラフは、Discriminator/Generator の損失曲線であり、緩やかな収束や小さな振動であれば学習は安定傾向です。発散や大振幅の振動が続く場合は学習率・バッチサイズ・ラベルスムージング値の調整を検討してください。
 
 ## 訓練結果の可視化
 
