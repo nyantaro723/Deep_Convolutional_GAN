@@ -12,10 +12,14 @@ data/
 
 # Training artifacts
 checkpoints/
-outputs/
-generated*.png
 *.pth
 *.pt
+
+# Generated outputs (allow selected samples for README)
+outputs/
+!outputs/generated_samples.png
+!outputs/generated_epoch_*.png
+!outputs/training_loss.png
 
 # Jupyter noise
 .ipynb_checkpoints/
