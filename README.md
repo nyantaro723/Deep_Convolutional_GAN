@@ -27,8 +27,6 @@ GANは二つのニューラルネットワークが競い合うことで学習�
 
 ---
 
-## 数式で説明
-
 ### GAN の損失関数
 
 識別器と生成器はミニマックスゲームをプレイします：
@@ -51,6 +49,28 @@ $$\nabla_G \mathbb{E}_z[\log(1 - D(G(z)))]$$
 
 または実務では以下を使用（より安定）：
 $$\nabla_G \mathbb{E}_z[-\log D(G(z))]$$
+
+### 画像生成アルゴリズム（数式概要）
+
+- **入力分布**: ノイズ $z \sim \mathcal{N}(0, I)$、実画像 $x \sim p_{\text{data}}(x)$
+- **生成器の写像**: $\hat{x} = G_\theta(z)$（$\theta$ は生成器パラメータ）
+- **識別器の出力**: $D_\phi(x) = \sigma(f_\phi(x)) \in (0, 1)$（$\phi$ は識別器パラメータ, $\sigma$ はシグモイド）
+
+**識別器の損失 (二値交差エントロピー):**
+$$\mathcal{L}_D = -\mathbb{E}_{x \sim p_{\text{data}}} [\log D_\phi(x)] - \mathbb{E}_{z \sim p_z} [\log (1 - D_\phi(G_\theta(z)))]$$
+
+**生成器の損失 (非飽和型推奨):**
+$$\mathcal{L}_G = -\mathbb{E}_{z \sim p_z} [\log D_\phi(G_\theta(z))]$$
+
+**更新ステップ (1バッチ当たりの流れ):**
+1. $z \sim p_z(z)$ をサンプリングし $\hat{x} = G_\theta(z)$ を生成
+2. 実画像 $x$ と $\hat{x}$ を識別器に通し $D_\phi(x), D_\phi(\hat{x})$ を得る
+3. $\mathcal{L}_D$ を計算し $\phi \leftarrow \phi - \eta_D \nabla_\phi \mathcal{L}_D$
+4. $z$ を再サンプルし $\mathcal{L}_G$ を計算、$\theta \leftarrow \theta - \eta_G \nabla_\theta \mathcal{L}_G$
+
+**推論時 (画像生成):**
+$$z \sim \mathcal{N}(0, I), \quad \hat{x} = G_\theta(z)$$
+識別器は不要で、生成器のみで画像をサンプリングします。
 
 ## アーキテクチャ
 
@@ -176,6 +196,33 @@ with torch.no_grad():
     z = torch.randn(16, 100, 1, 1, device=device)
     fake_images = gen(z)
     save_image(fake_images, 'generated_images.png', normalize=True)
+```
+
+### 生成画像サンプル (例)
+
+訓練後に生成した画像をREADMEに貼り付けると、成果が一目で分かります。
+
+```
+outputs/
+├── generated_epoch_10.png
+├── generated_epoch_50.png
+└── generated_epoch_100.png
+```
+
+作成した画像を以下のように埋め込めます（GitHub上で表示）：
+
+```markdown
+![Generated samples at epoch 50](outputs/generated_epoch_50.png)
+![Generated samples at epoch 100](outputs/generated_epoch_100.png)
+```
+
+生成スクリプト例（任意のチェックポイントで実行）:
+
+```bash
+python generate.py \
+  --checkpoint checkpoints/generator_epoch_100.pth \
+  --num_images 16 \
+  --output outputs/generated_epoch_100.png
 ```
 
 ## 訓練結果の可視化
